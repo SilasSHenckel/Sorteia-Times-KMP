@@ -1,8 +1,12 @@
 package com.henckel.sorteiatimes.data.model
 
-data class Player(
-    val id          : Int? = null,
-    val name        : String? = null,
-    val position    : Int? = null,
-    val rate        : Int? = null
-)
+import io.realm.kotlin.types.RealmObject
+import io.realm.kotlin.types.annotations.PrimaryKey
+
+class Player : RealmObject {
+    @PrimaryKey
+    val id          : Int? = null
+    var name        : String? = null
+    var position    : Int? = null
+    var rate        : Int? = null
+}

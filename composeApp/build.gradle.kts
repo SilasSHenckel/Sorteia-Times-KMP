@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.realm)
 }
 
 kotlin {
@@ -48,6 +49,9 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.navigation.compose)
+
+            // Banco de Dados Realm
+            implementation(libs.realm)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

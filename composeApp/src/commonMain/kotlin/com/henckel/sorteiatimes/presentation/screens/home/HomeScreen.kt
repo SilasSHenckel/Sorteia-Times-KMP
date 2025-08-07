@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.henckel.sorteiatimes.Greeting
 import org.jetbrains.compose.resources.painterResource
@@ -29,6 +32,14 @@ import sorteiatimes.composeapp.generated.resources.compose_multiplatform
 fun HomeScreen(navController: NavController) {
 
     val viewModel = koinInject<HomeViewModel>()
+
+    val players by viewModel.players.collectAsStateWithLifecycle()
+
+    LazyColumn {
+        items(players) { player ->
+            Text(text = player.name ?: "")
+        }
+    }
 
     Test()
 }
