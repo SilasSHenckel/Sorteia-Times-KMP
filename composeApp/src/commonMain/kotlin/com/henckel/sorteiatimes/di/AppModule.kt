@@ -1,13 +1,11 @@
 package com.henckel.sorteiatimes.di
 
-import org.koin.core.module.Module
-import org.koin.dsl.module
-
-val appModule = module {
-//    single { MyRepository(get()) }
-//    single<RemoteDataSource> { RemoteDataSourceImpl() }
-}
+import com.henckel.sorteiatimes.data.di.dataModule
+import com.henckel.sorteiatimes.domain.di.domainModule
+import com.henckel.sorteiatimes.presentation.di.presentationModule
 
 val appModules = listOf(
-    appModule,
+    dataModule,
+    domainModule,
+    presentationModule,
 )
