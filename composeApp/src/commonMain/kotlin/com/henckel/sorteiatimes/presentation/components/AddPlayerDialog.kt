@@ -111,7 +111,7 @@ fun AddPlayerDialog(
             },
             dismissButton = {
                 OutlinedButton(onClick = {if(player == null) {
-                    onDismiss
+                    onDismiss()
                 } else {
                     onDelete(player)
                     onDismiss()
