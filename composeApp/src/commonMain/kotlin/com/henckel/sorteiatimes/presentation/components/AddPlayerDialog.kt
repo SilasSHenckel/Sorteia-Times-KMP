@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.henckel.sorteiatimes.data.model.Player
+import com.henckel.sorteiatimes.presentation.strings.AppStrings
 import com.henckel.sorteiatimes.presentation.theme.Green
 import com.henckel.sorteiatimes.presentation.theme.Theme
 
@@ -39,10 +40,12 @@ fun AddPlayerDialog(
     var selectedPosition by remember { mutableStateOf(positions.first()) }
     var expanded by remember { mutableStateOf(false) }
 
+    val strings = AppStrings.strings
+
     Theme {
         AlertDialog(
             onDismissRequest = onDismiss,
-            title = { Text("Adicionar Jogador") },
+            title = { Text(strings.addPlayer) },
             text = {
                 Column {
 
@@ -51,7 +54,7 @@ fun AddPlayerDialog(
                     OutlinedTextField(
                         value = name,
                         onValueChange = { if(it.length <= 80) name = it },
-                        label = { Text("Nome do Jogador") },
+                        label = { Text(strings.playerName) },
                         modifier = Modifier.fillMaxWidth(),
 
                         maxLines = 1
@@ -88,25 +91,23 @@ fun AddPlayerDialog(
                     Spacer(Modifier.height(20.dp))
                 }
             },
-            confirmButton = {
-                Button(
+            confirmButton =  {
+                if(player == null) Button(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Green,
                         contentColor = Green
                     ),
                     onClick = {
-                        if(player == null){
+//                        if(player == null){
                             onSave(name, selectedPosition)
-                        } else{
-                            player.name = name
-                            player.position = Player.getPositions().indexOf(selectedPosition)
-                            onUpdate(player)
-                        }
+//                        } else{
+//                          updatePlayer(player, onUpdate, name, selectedPosition)
+//                        }
                         onDismiss()
                     },
                     enabled = name.isNotBlank()
                 ) {
-                    Text("Salvar", color = Color.White)
+                    Text(strings.save, color = Color.White)
                 }
             },
             dismissButton = {
@@ -116,10 +117,17 @@ fun AddPlayerDialog(
                     onDelete(player)
                     onDismiss()
                 }}) {
-                    if(player == null) Text("Cancelar") else Text("Deletar", color = Color.Red)
+                    if(player == null) Text(strings.cancel) else Text(strings.delete, color = Color.Red)
                 }
             }
         )
     }
+}
 
+fun updatePlayer(player: Player?, onUpdate: (Player) -> Unit, name: String, selectedPosition: String){
+    if(player == null) return
+
+    player.name = name
+    player.position = Player.getPositions().indexOf(selectedPosition)
+    onUpdate(player)
 }

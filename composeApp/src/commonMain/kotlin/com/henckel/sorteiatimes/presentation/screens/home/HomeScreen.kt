@@ -36,6 +36,7 @@ import com.henckel.sorteiatimes.data.model.Player
 import com.henckel.sorteiatimes.presentation.components.AddPlayerDialog
 import com.henckel.sorteiatimes.presentation.components.MyTextButton
 import com.henckel.sorteiatimes.presentation.components.SolidButton
+import com.henckel.sorteiatimes.presentation.strings.AppStrings
 import com.henckel.sorteiatimes.presentation.theme.Blue
 import com.henckel.sorteiatimes.presentation.theme.Green
 import org.koin.compose.koinInject
@@ -44,6 +45,8 @@ import org.koin.compose.koinInject
 fun HomeScreen(navController: NavController) {
 
     val viewModel = koinInject<HomeViewModel>()
+
+    val strings = AppStrings.strings
 
     var nTeams by remember { mutableStateOf(2) }
     val players by viewModel.players.collectAsStateWithLifecycle()
@@ -66,7 +69,7 @@ fun HomeScreen(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Spacer(modifier = Modifier.height(14.dp))
-                Text("Jogadores".uppercase(), style= TextStyle(fontSize = 24.sp))
+                Text(strings.players.uppercase(), style= TextStyle(fontSize = 24.sp))
                 Spacer(modifier = Modifier.height(12.dp))
                 HorizontalDivider(thickness = 2.dp, color = Color.White)
                 LazyColumn {
@@ -92,7 +95,7 @@ fun HomeScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        SolidButton(text = "Adicionar Jogador", color = Green, onClick = { viewModel.openDialog() })
+        SolidButton(text = strings.addPlayer, color = Green, onClick = { viewModel.openDialog() })
 
         Spacer(modifier = Modifier.height(14.dp))
 
@@ -101,7 +104,7 @@ fun HomeScreen(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Text("Times:".uppercase(), style= TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold))
+            Text(strings.teams.uppercase(), style= TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Bold))
 
             Card(
                 modifier = Modifier.padding(start = 16.dp).fillMaxWidth().weight(1f),
@@ -122,7 +125,7 @@ fun HomeScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(14.dp))
 
-        SolidButton(text = "Sortear Times", color = Blue, onClick = { viewModel.sortTeams(players, nTeams, navController)})
+        SolidButton(text = strings.sortTeams, color = Blue, onClick = { viewModel.sortTeams(players, nTeams, navController)})
     }
 
     if (showDialog) {

@@ -1,6 +1,5 @@
 package com.henckel.sorteiatimes.presentation.screens.result
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
@@ -28,12 +26,15 @@ import androidx.navigation.NavController
 import com.henckel.sorteiatimes.data.model.Player
 import com.henckel.sorteiatimes.presentation.components.SolidButton
 import com.henckel.sorteiatimes.presentation.screens.home.HomeViewModel
+import com.henckel.sorteiatimes.presentation.strings.AppStrings
 import com.henckel.sorteiatimes.presentation.theme.Blue
 import org.koin.compose.koinInject
 
 @Composable
 fun ResultScreen(navController: NavController) {
     val viewModel = koinInject<HomeViewModel>()
+
+    val strings = AppStrings.strings
 
     LazyColumn(
         modifier = Modifier
@@ -48,7 +49,7 @@ fun ResultScreen(navController: NavController) {
         }
 
         item {
-            Text("Times Sorteados:".uppercase(), style= TextStyle(fontSize = 24.sp))
+            Text(strings.sortedTeams.uppercase(), style= TextStyle(fontSize = 24.sp))
         }
 
         item {
@@ -58,7 +59,7 @@ fun ResultScreen(navController: NavController) {
 
         viewModel.teamsMap.forEach { (key, value) ->
             item {
-                TeamContent(key.toString(), value)
+                TeamCard(key.toString(), value)
             }
         }
 
@@ -67,13 +68,16 @@ fun ResultScreen(navController: NavController) {
         }
 
         item {
-            SolidButton(text = "Voltar", color = Blue, onClick = { navController.popBackStack() })
+            SolidButton(text = strings.back.uppercase(), color = Blue, onClick = { navController.popBackStack() })
         }
     }
 }
 
 @Composable
-fun TeamContent(time: String, players: List<Player>) {
+fun TeamCard(time: String, players: List<Player>) {
+
+    val strings = AppStrings.strings
+
     Card(
         modifier = Modifier
             .padding(horizontal = 12.dp, vertical = 14.dp)
@@ -87,7 +91,7 @@ fun TeamContent(time: String, players: List<Player>) {
                 .padding(vertical = 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text("TIME $time", style = TextStyle(fontSize = 24.sp))
+            Text(strings.team + " $time", style = TextStyle(fontSize = 24.sp))
             Spacer(modifier = Modifier.height(12.dp))
             HorizontalDivider(thickness = 2.dp, color = Color.White)
             Column {

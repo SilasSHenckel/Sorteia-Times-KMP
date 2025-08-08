@@ -29,10 +29,9 @@ class PlayerRepositoryImpl(
         realm.write {
             var pl = query<Player>("id == $0", player.id).first().find()
             if (pl != null) {
-                pl = player
-//                pl.name = player.name
-//                pl.rate = player.rate
-//                pl.position = player.position
+                pl.name = player.name
+                pl.rate = player.rate
+                pl.position = player.position
             }
         }
     }
