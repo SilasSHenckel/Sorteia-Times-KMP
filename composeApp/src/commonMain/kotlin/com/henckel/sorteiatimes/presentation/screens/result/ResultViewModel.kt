@@ -7,7 +7,4 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class ResultViewModel() : ViewModel() {
 
-    private val _players = MutableStateFlow("")
-    val players: StateFlow<String> = _players.asStateFlow()
-
 }

@@ -1,4 +1,4 @@
-package br.com.crearesistemas.appconfigurator.theme
+package com.henckel.sorteiatimes.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

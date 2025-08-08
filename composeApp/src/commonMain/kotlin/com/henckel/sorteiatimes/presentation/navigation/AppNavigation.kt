@@ -27,21 +27,21 @@ fun AppNavigation(navController: NavHostController = rememberNavController()) {
                 animationSpec = tween(300)
             )
         },
-        startDestination = CameraScreen.HomeScreen.name
+        startDestination = AppScreens.HomeScreen.name
     ) {
 
-        composable(route = CameraScreen.HomeScreen.name){
+        composable(route = AppScreens.HomeScreen.name){
             HomeScreen(navController = navController)
         }
 
-        composable(route = CameraScreen.SortResultScreen.name) {
+        composable(route = AppScreens.SortResultScreen.name) {
             ResultScreen(navController = navController)
         }
         
     }
 }
 
-enum class CameraScreen {
+enum class AppScreens {
     HomeScreen,
     SortResultScreen,
 }

@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import br.com.crearesistemas.appconfigurator.theme.Theme
+import com.henckel.sorteiatimes.presentation.theme.Theme
 import com.henckel.sorteiatimes.presentation.strings.LocalStrings
 import com.henckel.sorteiatimes.presentation.strings.LocalizationManager
 import com.henckel.sorteiatimes.presentation.strings.PlatformLanguageProvider

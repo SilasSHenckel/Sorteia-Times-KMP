@@ -1,4 +1,4 @@
-package br.com.crearesistemas.appconfigurator.theme
+package com.henckel.sorteiatimes.presentation.theme
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -6,7 +6,9 @@ import androidx.compose.ui.graphics.Color
 
 val DarkBackground = Color(17, 17, 17)
 val LightBackGround = Color.White
-val PrimaryColor = Color(0xFFBB2424)
+val PrimaryColor = Color.White
+val Green = Color(0xFF57C378)
+val Blue = Color(0xFF498BC9)
 val SecondaryColor = Color.Gray
 val GrayBackground = Color(63, 60, 61)
 val ToastSuccessBackground = Color(0xCC9FF08F)
@@ -22,8 +24,8 @@ internal val LightColorScheme = lightColorScheme(
     tertiary = LightBackGround, //sempre branco
     tertiaryContainer = LightBackGround, //branco/cinza
     surface = DarkBackground, //sempre preto
-    surfaceContainer = ToastSuccessBackground, //sempre verde
-    surfaceVariant = ToastSuccessBorder, //sempre verde, Borda
+    surfaceContainer = GrayBackground, //sempre verde
+    surfaceVariant = GrayBackground, //sempre verde, Borda
     onErrorContainer = ToastErrorBackground, // sempre vermelho
     error = ToastErrorBorder, // sempre vermelho, borda
 )

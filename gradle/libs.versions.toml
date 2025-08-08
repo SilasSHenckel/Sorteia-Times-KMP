@@ -11,7 +11,7 @@ androidx-lifecycle = "2.9.1"
 androidx-testExt = "1.2.1"
 composeMultiplatform = "1.8.2"
 junit = "4.13.2"
-kotlin = "1.9.24"
+kotlin = "2.0.20"
 
 androidx-constraintlayout = "2.2.1"
 coil = "2.5.0"
@@ -27,7 +27,7 @@ koinAndroid = "3.5.0"
 koinCompose = "1.1.0"
 navigationCompose = "2.9.0-beta01"
 
-realm = "3.0.0"
+realm = "2.3.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

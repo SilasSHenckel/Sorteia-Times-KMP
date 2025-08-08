@@ -13,16 +13,26 @@ class PlayerRepositoryImpl(
 ) : PlayerRepository{
 
     override suspend fun insert(player: Player) {
-        realm.write { player }
+        realm.write {
+            val maxId = this.query(Player::class).max("id", Int::class).find() ?: 0
+            val newId = maxId + 1
+
+            copyToRealm(
+                player.apply {
+                    id = newId
+                }
+            )
+        }
     }
 
     override suspend fun update(player: Player) {
         realm.write {
-            val pl = query<Player>("id == $0", player.id).first().find()
+            var pl = query<Player>("id == $0", player.id).first().find()
             if (pl != null) {
-                pl.name = player.name
-                pl.rate = player.rate
-                pl.position = player.position
+                pl = player
+//                pl.name = player.name
+//                pl.rate = player.rate
+//                pl.position = player.position
             }
         }
     }
